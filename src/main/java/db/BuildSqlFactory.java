@@ -12,7 +12,9 @@ public class BuildSqlFactory {
 	public static SqlSessionFactory sqlSessionFactory;
 	
 	public static void initSqlSessionFactory() throws IOException{
-		String resources = "src/main/resources/mybatis-config.xml";
+		String resources = "mybatis-config.xml";
+		
+		System.out.println(resources);
 		
 		InputStream inputStream = Resources.getResourceAsStream(resources);
 		

@@ -1,10 +1,13 @@
-package data;
+package shipagent.data;
 
 import java.io.IOException;
 
 import org.apache.ibatis.session.SqlSession;
-import dao.User;
-import db.BuildSqlFactory;
+
+import com.alibaba.fastjson.JSON;
+
+import shipagent.dao.User;
+import shipagent.db.BuildSqlFactory;
 
 public class DataJson {
 	
@@ -17,7 +20,9 @@ public class DataJson {
 		try{
 			User user = (User) session.selectOne("mapping.UserMapper.getUser",1);
 			
-			System.out.println(user.getName()+user.getAge()+user.getId());
+			String jsonString = JSON.toJSONString(user);
+			
+			System.out.println(jsonString);
 			
 		}finally{
 			session.close();

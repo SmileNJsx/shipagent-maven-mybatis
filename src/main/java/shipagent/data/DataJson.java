@@ -1,6 +1,7 @@
 package shipagent.data;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -18,9 +19,11 @@ public class DataJson {
 		SqlSession session = BuildSqlFactory.sqlSessionFactory.openSession();
 		
 		try{
-			User user = (User) session.selectOne("mapping.UserMapper.getUser",1);
+			List<User> user = session.selectList("mapping.UserMapper.getUser");
 			
-			String jsonString = JSON.toJSONString(user);
+			User user1 = user.get(0);
+			
+			String jsonString = JSON.toJSONString(user1);
 			
 			System.out.println(jsonString);
 			
